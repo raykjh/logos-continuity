@@ -12,6 +12,7 @@ The product concept and continuity design documents existed before implementatio
 | `656c938` | 2026-07-18 23:36 | Safe keyless Render deployment and deterministic fallback path |
 | `dda89e3` | 2026-07-19 00:02 | Browser-rehearsal fix for modal layering in Judge Mode |
 | `cdd60b2` | 2026-07-19 00:09 | Public repository evidence integrated into Submission Evidence Center |
+| `942f854` | 2026-07-19 00:36 | English README, MIT license, Devpost draft, Build Week evidence, bilingual demo guide, subtitle file, recording checklist, and submission screenshots |
 
 ## What Codex Accelerated
 
