@@ -1428,6 +1428,6 @@ test("public deployment contract uses Node 24, safe secrets, and Render health c
   assert.match(renderBlueprint, /runtime: docker/);
   assert.match(renderBlueprint, /plan: free/);
   assert.match(renderBlueprint, /healthCheckPath: \/api\/health/);
-  assert.match(renderBlueprint, /key: OPENAI_API_KEY\s+sync: false/);
+  assert.ok(!renderBlueprint.includes("OPENAI_API_KEY"));
   assert.match(serverEntry, /process\.env\.HOST \?\? "127\.0\.0\.1"/);
 });

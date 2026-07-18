@@ -117,7 +117,7 @@ Copy-Item .env.example .env.local
 ## Public Judge Deployment
 
 - 루트 `Dockerfile`은 Node.js 24 다단계 빌드로 UI를 생성하고 런타임 이미지에는 정적 결과와 서버만 포함합니다.
-- `render.yaml`은 Singapore 리전의 무료 Docker Web Service, `/api/health` 검사와 런타임 전용 API 키 입력을 정의합니다.
+- `render.yaml`은 Singapore 리전의 무료 Docker Web Service와 `/api/health` 검사를 정의하며, API 키 없이 Local Safe Mode로 즉시 배포됩니다.
 - 서버는 로컬에서 `127.0.0.1`, 배포 환경에서 `HOST=0.0.0.0`으로 바인딩합니다.
 - Render 무료 서비스의 SQLite는 일시적이므로 재시작·재배포·유휴 중지 후 데모 상태가 초기화됩니다. 이는 영속 프로덕션 저장소가 아니라 심사용 테스트 경로입니다.
 - 실제 공개 URL 생성 절차와 무료 요금제 제약은 `docs/PUBLIC_DEPLOYMENT.md`에 있습니다.

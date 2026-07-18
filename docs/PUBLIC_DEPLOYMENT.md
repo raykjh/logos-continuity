@@ -8,11 +8,11 @@ LOGOS Continuity includes a Render Blueprint that creates a free public Docker w
 2. Sign in to Render and choose **New → Blueprint**.
 3. Connect the repository containing `render.yaml`.
 4. Review the `logos-continuity-judge` free web service and apply the Blueprint.
-5. Optionally set the `OPENAI_API_KEY` secret to enable the `GPT-5.6 LIVE` path.
+5. Optionally add an `OPENAI_API_KEY` secret from the service's **Environment** page after deployment to enable the `GPT-5.6 LIVE` path.
 6. Wait for `/api/health` to pass, then open the generated `onrender.com` URL.
 7. Add the public URL to the Build Week testing instructions and Submission Evidence.
 
-The Docker image never receives the API key during its build. Render injects the secret only at runtime.
+The Blueprint does not request an API key, so Local Safe Mode deploys without setup. If added later, Render injects the secret only at runtime and the Docker image never receives it during the build.
 
 ## Judge Test Path
 
