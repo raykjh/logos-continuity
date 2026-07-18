@@ -1,0 +1,11 @@
+node_modules/
+.pnpm-store/
+.tool-install/
+.agents/
+dist/
+data/*.db
+data/*.db-*
+coverage/
+artifacts/
+.env
+.env.local

@@ -1,0 +1,26 @@
+{
+  "name": "logos-continuity-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run.ps1 dev",
+    "build": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run.ps1 build",
+    "package:judge": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-judge.ps1",
+    "start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run.ps1 start",
+    "test": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run.ps1 test"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
+  }
+}
