@@ -1383,7 +1383,7 @@ test("submission evidence separates verified artifacts from external actions", (
 
   assert.equal(evidence.event.track, "Work and Productivity");
   assert.equal(evidence.readiness.total, 13);
-  assert.equal(evidence.readiness.ready, 5);
+  assert.equal(evidence.readiness.ready, 6);
   assert.equal(evidence.readiness.blocked, 1);
   assert.equal(gptRequirement?.status, "blocked");
   assert.equal(videoRequirement?.status, "action_required");
@@ -1409,7 +1409,7 @@ test("submission evidence marks live GPT-5.6 configuration as ready", () => {
   assert.equal(gptRequirement?.status, "ready");
   assert.equal(accessRequirement?.status, "ready");
   assert.equal(repositoryRequirement?.status, "ready");
-  assert.equal(evidence.readiness.ready, 8);
+  assert.equal(evidence.readiness.ready, 9);
   assert.equal(evidence.readiness.blocked, 0);
   assert.equal(evidence.judgePackage.available, true);
   assert.equal(evidence.judgePackage.downloadUrl, "/api/submission-evidence/judge-package");
@@ -1421,6 +1421,8 @@ test("public deployment contract uses Node 24, safe secrets, and Render health c
   const dockerfile = readFileSync("Dockerfile", "utf8");
   const renderBlueprint = readFileSync("render.yaml", "utf8");
   const serverEntry = readFileSync("server/index.ts", "utf8");
+  const buildWeekLog = readFileSync("docs/BUILD_WEEK_BUILD_LOG.md", "utf8");
+  const license = readFileSync("LICENSE", "utf8");
 
   assert.match(dockerfile, /FROM node:24-bookworm-slim/);
   assert.match(dockerfile, /pnpm exec tsc --noEmit && pnpm exec vite build/);
@@ -1433,4 +1435,6 @@ test("public deployment contract uses Node 24, safe secrets, and Render health c
   assert.match(renderBlueprint, /REPOSITORY_URL/);
   assert.ok(!renderBlueprint.includes("OPENAI_API_KEY"));
   assert.match(serverEntry, /process\.env\.HOST \?\? "127\.0\.0\.1"/);
+  assert.match(buildWeekLog, /Timestamped Repository Evidence/);
+  assert.match(license, /MIT License/);
 });

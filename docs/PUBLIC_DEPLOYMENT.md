@@ -1,54 +1,56 @@
 # Public Judge Deployment
 
-LOGOS Continuity includes a Render Blueprint that creates a free public Docker web service.
+## Current Deployment
 
-## Deploy
-
-1. Push the repository to GitHub or GitLab.
-2. Sign in to Render and choose **New → Blueprint**.
-3. Connect the repository containing `render.yaml`.
-4. Review the `logos-continuity-judge` free web service and apply the Blueprint.
-5. Optionally add an `OPENAI_API_KEY` secret from the service's **Environment** page after deployment to enable the `GPT-5.6 LIVE` path.
-6. Wait for `/api/health` to pass, then open the generated `onrender.com` URL.
-7. Add the public URL to the Build Week testing instructions and Submission Evidence.
-
-The Blueprint does not request an API key, so Local Safe Mode deploys without setup. If added later, Render injects the secret only at runtime and the Docker image never receives it during the build.
+- Application: <https://logos-continuity-judge.onrender.com/>
+- Platform: Render free Docker web service
+- Health check: `/api/health`
+- Region: Singapore
+- Runtime: Node.js 24
+- Live model: `gpt-5.6`
 
 ## Judge Test Path
 
 1. Open the public URL and wait for the free instance to wake if necessary.
-2. Click `데모 초기화` to restore the deterministic seeded project.
-3. Click `심사 모드` and follow the seven-step 2:50 flow.
-4. Open `제출` to review English copy and requirement evidence.
+2. Click **데모 초기화** (`Reset Demo`).
+3. Confirm the **GPT-5.6 LIVE** badge.
+4. Click **심사 모드** (`Judge Mode`).
+5. Follow the seven-step guided route.
+6. Open **제출** (`Submission`) to inspect requirement evidence and English submission copy.
+
+## Blueprint Deployment
+
+1. Push the repository to GitHub or GitLab.
+2. In Render, choose **New → Blueprint**.
+3. Connect the repository containing `render.yaml`.
+4. Apply the `logos-continuity-judge` free web service.
+5. Optionally add `OPENAI_API_KEY` from the service Environment page.
+6. Wait for `/api/health` to pass.
+
+The Blueprint intentionally omits the API key so the application can deploy in Local Safe Mode without secrets. Render injects the key only at runtime if it is added later.
 
 ## Free-Tier Behavior
 
-- Render free web services spin down after 15 minutes without inbound traffic and can take about one minute to wake.
-- The free filesystem is ephemeral. SQLite changes disappear after a restart, redeploy, or spin-down.
-- This deployment is intentionally a disposable judge demo: LOGOS recreates the seeded demo project on a fresh database.
-- Do not present the free deployment as durable production storage.
-- Long-term production use requires persistent storage, such as a paid disk or an external database migration.
+- The free service may sleep after inactivity and require a wake-up delay.
+- The filesystem is ephemeral.
+- SQLite changes can disappear after restart or redeploy.
+- The deployment is intentionally a disposable judge demo with deterministic seeded data.
+- Durable production use requires persistent storage or an external database.
 
-## Required Runtime Contract
+## Runtime Contract
 
-- Node.js 24
 - `HOST=0.0.0.0`
 - Render-provided `PORT`
-- `GET /api/health` returns HTTP 200
 - `LOGOS_DB_PATH=/app/data/logos.db`
+- `GET /api/health` returns HTTP 200
+- `OPENAI_MODEL=gpt-5.6`
+- `REPOSITORY_URL=https://github.com/raykjh/logos-continuity`
 
-## Local Container Commands
+## Local Container
 
 ```bash
 docker build -t logos-continuity .
 docker run --rm -p 4318:10000 logos-continuity
 ```
 
-Open `http://127.0.0.1:4318` and verify `/api/health` before deploying.
-
-## Official Platform References
-
-- https://render.com/docs/free
-- https://render.com/docs/web-services
-- https://render.com/docs/blueprint-spec
-- https://render.com/docs/health-checks
+Open <http://127.0.0.1:4318>.

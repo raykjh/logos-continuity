@@ -702,10 +702,10 @@ export class ContinuityService {
         id: "new-work-evidence",
         category: "repository",
         label: "Build Week work distinguished from prior work",
-        status: "action_required",
+        status: "ready",
         critical: true,
-        evidence: "Feature documentation exists, but timestamped session logs or dated commit history must be attached to prove the extension period.",
-        action: "Preserve dated commits and Codex session evidence, then summarize what was added during Build Week."
+        evidence: "Timestamped commits and docs/BUILD_WEEK_BUILD_LOG.md distinguish the implemented Build Week work from the earlier product design.",
+        action: "Keep the Build Week log linked from the public README and Devpost description."
       },
       {
         id: "english-video",
