@@ -219,7 +219,7 @@ button:disabled { cursor: wait; opacity: .55; }
 .proposal-list footer .approve { border-color: #397451; color: var(--green); background: #11291c; }
 .empty { color: var(--dim); font-size: 11px; }
 
-.modal-backdrop { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; background: #050806d9; backdrop-filter: blur(10px); }
+.modal-backdrop { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; background: #050806d9; backdrop-filter: blur(10px); }
 .judge-panel { position: fixed; right: 22px; bottom: 22px; z-index: 50; width: min(390px, calc(100vw - 44px)); padding: 17px; color: #e8e3d6; background: #14130df2; border: 1px solid #8a7131; box-shadow: 0 20px 70px #000, inset 0 0 50px #ad8d3212; backdrop-filter: blur(18px); }
 .judge-panel > header { display: grid; grid-template-columns: 1fr auto auto; gap: 15px; align-items: center; }
 .judge-panel > header > div:first-child span, .judge-panel > header > div:first-child strong { display: block; font-family: var(--font-mono); }
