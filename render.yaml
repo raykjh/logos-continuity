@@ -16,3 +16,5 @@ services:
         value: /app/data/logos.db
       - key: OPENAI_MODEL
         value: gpt-5.6
+      - key: REPOSITORY_URL
+        value: https://github.com/raykjh/logos-continuity

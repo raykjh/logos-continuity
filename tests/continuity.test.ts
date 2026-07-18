@@ -1401,13 +1401,15 @@ test("submission evidence marks live GPT-5.6 configuration as ready", () => {
     configured: true,
     model: "gpt-5.6",
     fallback: "deterministic-rules"
-  }, true);
+  }, true, true, "https://github.com/raykjh/logos-continuity");
   const gptRequirement = evidence.requirements.find((item) => item.id === "gpt-live");
   const accessRequirement = evidence.requirements.find((item) => item.id === "test-access");
+  const repositoryRequirement = evidence.requirements.find((item) => item.id === "repository-url");
 
   assert.equal(gptRequirement?.status, "ready");
   assert.equal(accessRequirement?.status, "ready");
-  assert.equal(evidence.readiness.ready, 7);
+  assert.equal(repositoryRequirement?.status, "ready");
+  assert.equal(evidence.readiness.ready, 8);
   assert.equal(evidence.readiness.blocked, 0);
   assert.equal(evidence.judgePackage.available, true);
   assert.equal(evidence.judgePackage.downloadUrl, "/api/submission-evidence/judge-package");
@@ -1428,6 +1430,7 @@ test("public deployment contract uses Node 24, safe secrets, and Render health c
   assert.match(renderBlueprint, /runtime: docker/);
   assert.match(renderBlueprint, /plan: free/);
   assert.match(renderBlueprint, /healthCheckPath: \/api\/health/);
+  assert.match(renderBlueprint, /REPOSITORY_URL/);
   assert.ok(!renderBlueprint.includes("OPENAI_API_KEY"));
   assert.match(serverEntry, /process\.env\.HOST \?\? "127\.0\.0\.1"/);
 });

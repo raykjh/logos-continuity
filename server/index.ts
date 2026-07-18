@@ -100,7 +100,8 @@ async function handleApi(request: IncomingMessage, response: ServerResponse, url
     sendJson(response, 200, service.getSubmissionEvidence(
       getAiStatus(),
       packageDownloadable || existsSync(portableBuildMarkerPath),
-      packageDownloadable
+      packageDownloadable,
+      process.env.REPOSITORY_URL ?? ""
     ));
     return;
   }

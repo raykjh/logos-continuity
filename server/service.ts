@@ -579,11 +579,13 @@ export class ContinuityService {
   getSubmissionEvidence(
     aiStatus: SubmissionAiStatus,
     distributionReady = false,
-    distributionDownloadable = distributionReady
+    distributionDownloadable = distributionReady,
+    repositoryUrl = ""
   ) {
     const generatedAt = nowIso();
     const projects = this.listProjects();
     const commandCenter = this.getContinuityCommandCenter();
+    const publicRepositoryUrl = repositoryUrl.trim();
     const requirements: SubmissionRequirement[] = [
       {
         id: "working-project",
@@ -656,10 +658,14 @@ export class ContinuityService {
         id: "repository-url",
         category: "repository",
         label: "Repository URL available to judges",
-        status: "action_required",
+        status: publicRepositoryUrl ? "ready" : "action_required",
         critical: true,
-        evidence: "Local source and installation instructions exist; a judge-accessible repository URL is not stored in the app.",
-        action: "Publish the repository or share the private repository with the required judging accounts."
+        evidence: publicRepositoryUrl
+          ? `Public judge-accessible repository: ${publicRepositoryUrl}`
+          : "Local source and installation instructions exist; a judge-accessible repository URL is not stored in the app.",
+        action: publicRepositoryUrl
+          ? "Use this repository URL in Devpost."
+          : "Publish the repository or share the private repository with the required judging accounts."
       },
       {
         id: "codex-collaboration",
