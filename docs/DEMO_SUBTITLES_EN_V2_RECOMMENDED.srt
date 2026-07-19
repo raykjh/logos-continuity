@@ -1,0 +1,35 @@
+1
+00:00:00,000 --> 00:00:15,000
+AI can remember previous conversations, but it cannot guarantee which information is the current confirmed truth. LOGOS Continuity prevents outdated state and uncertain ideas from silently becoming canonical project facts.
+
+2
+00:00:15,000 --> 00:00:25,000
+With Codex, I turned this design into a working public product with a state engine, approval rules, GPT integration, and 54 automated tests.
+
+3
+00:00:25,000 --> 00:00:35,000
+Command Center identifies the most urgent continuity risks and routes the user to the correct resolution workflow.
+
+4
+00:00:35,000 --> 00:01:00,000
+In a new session, GPT-5.6 identifies the intended project from natural language. LOGOS restores canonical truth, current state, next actions, and unverified warnings as separate layers.
+
+5
+00:01:00,000 --> 00:01:22,000
+GPT-5.6 structures the user's intent, but it cannot directly change canonical truth. This statement remains in Exploration until the user explicitly approves a change.
+
+6
+00:01:22,000 --> 00:01:44,000
+Conflicting claims never silently overwrite canonical state. The user can keep the existing decision, apply a temporary exception, or approve a new canonical decision.
+
+7
+00:01:44,000 --> 00:02:00,000
+Whenever canonical state changes, LOGOS records what changed, why it changed, and where the information came from.
+
+8
+00:02:00,000 --> 00:02:25,000
+The next session does not have to guess from the full conversation again. It starts from verified project state, unresolved risks, and the correct next action in authority order.
+
+9
+00:02:25,000 --> 00:02:35,000
+LOGOS turns long-running AI work from probabilistic recall into approval-gated, provenance-aware continuity.
