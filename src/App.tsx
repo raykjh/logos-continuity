@@ -1686,35 +1686,43 @@ export default function App() {
     setEvidenceOpen(false);
   }
 
-  async function focusJudgeStep(index: number) {
+  function selectJudgeStep(index: number) {
     const nextIndex = clampJudgeStep(index);
     const step = JUDGE_MODE_STEPS[nextIndex];
     setJudgeStepIndex(nextIndex);
     closeJudgeSurfaces();
-    if (step.target === "command") await openCommandCenter();
     if (step.target === "session") {
       setSessionQuery(step.sampleInput ?? "");
       setRecognition(null);
-      setSessionOpen(true);
     }
     if (step.target === "intake") {
       setIntakeText(step.sampleInput ?? "");
-      window.setTimeout(() => document.querySelector(".intake-console")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
     }
     if (step.target === "conflict") {
       setConflictText(step.sampleInput ?? "");
-      await openConflictCenter();
     }
+  }
+
+  async function openJudgeStep(index: number) {
+    const nextIndex = clampJudgeStep(index);
+    const step = JUDGE_MODE_STEPS[nextIndex];
+    selectJudgeStep(nextIndex);
+    if (step.target === "command") await openCommandCenter();
+    if (step.target === "session") setSessionOpen(true);
+    if (step.target === "intake") {
+      window.setTimeout(() => document.querySelector(".intake-console")?.scrollIntoView({ behavior: "smooth", block: "center" }), 0);
+    }
+    if (step.target === "conflict") await openConflictCenter();
     if (step.target === "operations") openOperationsCenter();
     if (step.target === "history") await openHistoryCenter();
     if (step.target === "context") setContextOpen(true);
   }
 
-  async function startJudgeMode() {
+  function startJudgeMode() {
     setJudgeActive(true);
     setJudgeElapsed(0);
     setJudgeStepIndex(0);
-    await focusJudgeStep(0);
+    selectJudgeStep(0);
     setNotice("Judge Mode를 시작했습니다. 안내 순서대로 3분 데모를 진행하세요.");
   }
 
@@ -2042,11 +2050,11 @@ export default function App() {
             <div><span>JUDGE PROOF</span><p>{JUDGE_MODE_STEPS[judgeStepIndex].proof}</p></div>
             {JUDGE_MODE_STEPS[judgeStepIndex].sampleInput && <blockquote>{JUDGE_MODE_STEPS[judgeStepIndex].sampleInput}</blockquote>}
           </section>
-          <button className="judge-focus" disabled={busy} onClick={() => focusJudgeStep(judgeStepIndex)}>{JUDGE_MODE_STEPS[judgeStepIndex].actionLabel}</button>
+          <button className="judge-focus" disabled={busy} onClick={() => openJudgeStep(judgeStepIndex)}>{JUDGE_MODE_STEPS[judgeStepIndex].actionLabel}</button>
           <footer>
-            <button disabled={judgeStepIndex === 0 || busy} onClick={() => focusJudgeStep(judgeStepIndex - 1)}>이전</button>
+            <button disabled={judgeStepIndex === 0 || busy} onClick={() => selectJudgeStep(judgeStepIndex - 1)}>이전</button>
             <button className="judge-reset" disabled={busy} onClick={resetDemo}>데모 초기화</button>
-            <button className="judge-next" disabled={judgeStepIndex === JUDGE_MODE_STEPS.length - 1 || busy} onClick={() => focusJudgeStep(judgeStepIndex + 1)}>{judgeStepIndex === JUDGE_MODE_STEPS.length - 1 ? "데모 완료" : "다음 단계"}</button>
+            <button className="judge-next" disabled={judgeStepIndex === JUDGE_MODE_STEPS.length - 1 || busy} onClick={() => selectJudgeStep(judgeStepIndex + 1)}>{judgeStepIndex === JUDGE_MODE_STEPS.length - 1 ? "데모 완료" : "다음 단계"}</button>
           </footer>
         </aside>
       )}
