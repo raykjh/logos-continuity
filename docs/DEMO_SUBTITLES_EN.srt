@@ -1,35 +1,39 @@
 1
-00:00:00,000 --> 00:00:18,000
-When AI work spans multiple conversations, past information, current state, confirmed decisions, and ideas can easily become mixed. LOGOS Continuity is an approval-gated continuity tool designed to prevent that failure.
+00:00:00,000 --> 00:00:15,000
+AI can remember previous conversations, but it cannot guarantee which information is current confirmed truth. LOGOS Continuity protects canonical state in real long-running projects.
 
 2
-00:00:18,000 --> 00:00:35,000
-Codex accelerated the state architecture, API, React interface, safety rules, 54 automated tests, browser QA, and public deployment.
+00:00:15,000 --> 00:00:25,000
+With Codex, I built a working public product. Judge Mode is only an optional guide through the real state engine, approval rules, and GPT integration.
 
 3
-00:00:35,000 --> 00:00:55,000
-Instead of merely remembering everything, Command Center ranks the most urgent continuity risks and routes the user to the correct resolution workflow.
+00:00:25,000 --> 00:00:35,000
+Command Center identifies the most urgent continuity risks and routes the user to the correct resolution workflow.
 
 4
-00:00:55,000 --> 00:01:20,000
-In a new session, GPT-5.6 identifies the intended project from natural language. LOGOS restores verified truth, current state, next actions, and unverified checkpoint warnings as separate layers.
+00:00:35,000 --> 00:00:58,000
+This sample is a real release workflow. GPT-5.6 identifies the intended project, while LOGOS restores approved plans, current validation state, next actions, and warnings as separate layers.
 
 5
-00:01:20,000 --> 00:01:43,000
-GPT-5.6 classifies the statement into a structured state, but it cannot directly change canonical truth. An uncertain idea remains in Exploration until the user explicitly approves a change.
+00:00:58,000 --> 00:01:20,000
+GPT-5.6 structures the user's intent, but it cannot directly change canonical truth. This statement remains in Exploration until the user explicitly approves a change.
 
 6
-00:01:43,000 --> 00:02:05,000
+00:01:20,000 --> 00:01:42,000
 Conflicting claims never silently overwrite canonical state. The user can keep the existing decision, apply a temporary exception, or approve a new canonical decision.
 
 7
-00:02:05,000 --> 00:02:28,000
-Current state, next actions, exploration, and recovery checkpoints remain operationally separate. Every commit and conflict resolution preserves the before state, after state, reason, and provenance.
+00:01:42,000 --> 00:01:57,000
+Current State, Next Actions, Exploration, and recovery checkpoints remain separate and manageable in one operational view.
 
 8
-00:02:28,000 --> 00:02:48,000
-The next session receives an authority-ordered continuity layer rather than an unverified memory dump.
+00:01:57,000 --> 00:02:12,000
+Whenever canonical state changes, LOGOS records what changed, why it changed, and where the information came from.
 
 9
-00:02:48,000 --> 00:02:55,000
+00:02:12,000 --> 00:02:30,000
+The next session does not have to guess from the full conversation again. It starts from verified project state, unresolved risks, and the correct next action in authority order.
+
+10
+00:02:30,000 --> 00:02:35,000
 LOGOS turns long-running AI work from probabilistic recall into approval-gated, provenance-aware continuity.

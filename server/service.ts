@@ -620,7 +620,7 @@ export class ContinuityService {
         label: "Under-three-minute demo plan",
         status: "ready",
         critical: true,
-        evidence: "Judge Mode provides a seven-step 02:50 guided flow with an elapsed timer and narration prompts.",
+        evidence: "Optional Judge Mode provides a seven-step 02:15 guided flow with no step longer than 23 seconds.",
         action: "Rehearse once, then record the guided flow."
       },
       {
@@ -727,8 +727,8 @@ export class ContinuityService {
       tagline: "Approval-gated, provenance-aware continuity for long-running AI work.",
       track: "Work and Productivity",
       shortDescription: "LOGOS Continuity replaces fragile conversational recall with a local continuity layer that separates verified project truth, current state, exploration, conflicts, next actions, and recovery checkpoints.",
-      fullDescription: "LOGOS Continuity helps people resume complex AI-assisted work without letting uncertain memories silently become facts. It identifies the right project in a new session, assembles an authority-ordered Continuity Brief, and requires explicit approval before canonical state changes. Conflicts become visible decisions, linked project context remains reference-only until promoted, and provenance drift is monitored after promotion. A portfolio Command Center ranks the most urgent continuity risks, while a 2:50 Judge Mode demonstrates the complete workflow.",
-      testingInstructions: "Install dependencies with pnpm, run pnpm dev, open http://127.0.0.1:5173, select the seeded LOGOS demo project, and start Judge Mode. The deterministic Local Safe Mode works without an API key; set OPENAI_API_KEY to demonstrate the GPT-5.6 LIVE recognition and classification path."
+      fullDescription: "LOGOS Continuity helps people resume complex AI-assisted work without letting uncertain memories silently become facts. It identifies the right project in a new session, assembles an authority-ordered Continuity Brief, and requires explicit approval before canonical state changes. Conflicts become visible decisions, linked project context remains reference-only until promoted, and provenance drift is monitored after promotion. A portfolio Command Center ranks the most urgent continuity risks, while an optional 2:15 Judge Mode demonstrates the complete workflow.",
+      testingInstructions: "Install dependencies with pnpm, run pnpm dev, open http://127.0.0.1:5173, select the seeded Atlas release project, and start the optional Judge Mode. The deterministic Local Safe Mode works without an API key; set OPENAI_API_KEY to demonstrate the GPT-5.6 LIVE recognition and classification path."
     };
     const features = [
       "High/Medium/Low project recognition and authority-ordered session recovery",
@@ -736,7 +736,7 @@ export class ContinuityService {
       "Three-way conflict resolution without silent canonical overwrites",
       "Context promotion with immutable provenance and drift monitoring",
       "Portfolio health scoring and risk routing through Continuity Command Center",
-      "Seven-step 2:50 Judge Mode with safe sample inputs and no automatic approvals"
+      "Optional seven-step 2:15 Judge Mode with safe sample inputs and no automatic approvals"
     ];
     const contributions = [
       {
@@ -3451,17 +3451,17 @@ export class ContinuityService {
   ensureDemoProject() {
     const existing = this.database
       .prepare("SELECT * FROM projects WHERE name = ? ORDER BY created_at DESC LIMIT 1")
-      .get("LOGOS Continuity 해커톤 데모") as Row | undefined;
+      .get("Atlas 결제 모듈 베타 릴리스") as Row | undefined;
     if (existing) {
       this.ensureDemoStructure(String(existing.id));
       return this.getProject(String(existing.id));
     }
 
     const project = this.createProject({
-      name: "LOGOS Continuity 해커톤 데모",
-      summary: "새 세션에서 검증된 정본과 중단 지점을 정확히 복구하는 MVP",
-      primaryGoal: "3분 안에 일반 회상과 정본 기반 복구의 차이를 증명한다.",
-      recognitionSignals: ["LOGOS", "continuity", "해커톤", "정본 복구"]
+      name: "Atlas 결제 모듈 베타 릴리스",
+      summary: "팀이 승인된 릴리스 상태와 다음 작업을 새 세션에서도 정확히 복구하는 프로젝트",
+      primaryGoal: "결제 모듈 베타 릴리스를 안전하게 완료한다.",
+      recognitionSignals: ["Atlas", "결제 모듈", "베타 릴리스", "스테이징"]
     });
     const projectId = String(project.id);
 
@@ -3469,14 +3469,14 @@ export class ContinuityService {
       {
         targetType: "truth",
         category: "product_goal",
-        content: "LOGOS Continuity는 독립 사업이 아니라 GPT 연속성 구조를 증명하는 해커톤 프로젝트다.",
+        content: "Atlas Release Platform은 승인된 릴리스 계획과 운영 상태를 팀 간에 일관되게 유지한다.",
         verificationStatus: "confirmed",
         reason: "최종 설계 정본"
       },
       {
         targetType: "truth",
         category: "safety_rule",
-        content: "사용자 승인 전에는 핵심 정본을 변경하지 않는다.",
+        content: "전체 배포 전에는 스테이징 검증과 담당자 승인을 완료한다.",
         verificationStatus: "confirmed",
         reason: "구현 안전 원칙"
       }
@@ -3488,7 +3488,7 @@ export class ContinuityService {
 
     const currentProposal = this.createProposal(projectId, {
       targetType: "current_state",
-      content: "승인 기반 Commit과 Context Assembly를 연결하는 단계",
+      content: "결제 모듈 베타 릴리스 후보를 스테이징에서 검증 중",
       verificationStatus: "confirmed",
       reason: "현재 구현 상태"
     });
@@ -3496,18 +3496,18 @@ export class ContinuityService {
 
     const actionProposal = this.createProposal(projectId, {
       targetType: "next_action",
-      content: "새 세션 복구 데모를 실행한다.",
+      content: "실패한 결제 재시도 시나리오를 검증한다.",
       verificationStatus: "confirmed",
       itemStatus: "pending",
       reason: "현재 최우선 작업"
     });
     this.approveProposal(String(actionProposal.id));
 
-    this.addExploration(projectId, "유료화 가능성도 나중에 검토해보자.");
+    this.addExploration(projectId, "모바일 간편결제 지원 범위를 확대하는 것도 검토해보자.");
     this.saveCheckpoint(projectId, {
-      stableState: "핵심 데이터 구조와 승인 규칙이 확정된 상태",
-      unverifiedChanges: ["복구 UI 사용성은 아직 검증되지 않음"],
-      resumeInstruction: "Context Assembly 결과를 확인하고 복구 데모를 실행한다."
+      stableState: "결제 API 통합과 롤백 절차가 검증된 상태",
+      unverifiedChanges: ["모바일 결제 재시도율은 아직 검증되지 않음"],
+      resumeInstruction: "스테이징 로그를 확인하고 재시도 시나리오를 검증한다."
     });
     this.ensureDemoStructure(projectId);
     return project;
@@ -3515,8 +3515,8 @@ export class ContinuityService {
 
   resetDemoProject() {
     this.database
-      .prepare("DELETE FROM projects WHERE name = ?")
-      .run("LOGOS Continuity 해커톤 데모");
+      .prepare("DELETE FROM projects WHERE name IN (?, ?)")
+      .run("Atlas 결제 모듈 베타 릴리스", "LOGOS Continuity 해커톤 데모");
     return this.ensureDemoProject();
   }
 }

@@ -11,9 +11,9 @@ Recording remains intentionally postponed until the entrant is ready. Everything
 - [x] English README prepared
 - [x] Devpost English draft prepared
 - [x] Build Week evidence log prepared
-- [x] Korean narration guide prepared
-- [x] English subtitle file prepared
-- [x] Seven-step Judge Mode rehearsed under three minutes
+- [x] Approved V3 Korean narration guide prepared in `JUDGE_DEMO_SCRIPT.md`
+- [x] Approved V3 English subtitles prepared in `DEMO_SUBTITLES_EN.srt`
+- [x] Product-focused sample and V3 timing rehearsal completed (`02:15` Judge Mode, `02:35` total)
 - [x] Browser warnings and errors checked
 
 ## User Action Before Recording
@@ -33,6 +33,12 @@ Recording remains intentionally postponed until the entrant is ready. Everything
 - Keep the public app open before starting the recording.
 - Wake the Render instance and verify the GPT-5.6 LIVE badge.
 - Click **데모 초기화** immediately before the final take.
+- Follow the approved timing and safe click rules in `JUDGE_DEMO_SCRIPT.md`.
+- Treat the cursor moving to **GPT-5.6 LIVE** as the narration start signal.
+- Keep every unchanged screen under 23 seconds; use cursor highlights within longer explanations.
+- In Safe Routing, click `미확정 아이디어` before `분류하고 안전하게 반영` so the input is visibly confirmed.
+- Close each open Center with **×** before clicking **다음 단계**.
+- In Safe Routing, scroll until **분류하고 안전하게 반영** is fully visible above the Judge panel before clicking.
 
 ## Required Video Content
 
@@ -45,12 +51,13 @@ Recording remains intentionally postponed until the entrant is ready. Everything
 - Conflict choices without silent overwrite
 - Provenance or history evidence
 - Final assembled context handoff
+- Clear statement that Judge Mode is an optional guide, not the product itself
 
 ## After Recording
 
 - Trim dead time without removing required explanation.
 - Keep the final duration under three minutes.
-- Add the complete English subtitles from `DEMO_SUBTITLES_EN.srt`.
+- Add the complete approved English subtitles from `DEMO_SUBTITLES_EN.srt`.
 - Check subtitle timing against the final edit.
 - Confirm that no secrets or personal data appear.
 - Upload publicly to YouTube.

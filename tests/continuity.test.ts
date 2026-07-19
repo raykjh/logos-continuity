@@ -401,18 +401,18 @@ test("안전 폴백 분류기는 명시적 다음 작업을 분리한다", () =>
 });
 
 test("프로젝트 인식은 명확한 신호가 있으면 High로 바로 식별한다", () => {
-  const result = recognizeProjectLocally("LOGOS 해커톤 작업 이어가자.", [
+  const result = recognizeProjectLocally("Atlas 결제 모듈 작업 이어가자.", [
     {
-      id: "logos",
-      name: "LOGOS Continuity 해커톤 데모",
-      summary: "정본 기반 복구",
-      primaryGoal: "연속성 구조를 증명한다.",
-      recognitionSignals: ["LOGOS", "해커톤", "정본 복구"]
+      id: "atlas",
+      name: "Atlas 결제 모듈 베타 릴리스",
+      summary: "승인된 릴리스 상태 복구",
+      primaryGoal: "결제 모듈 베타 릴리스를 안전하게 완료한다.",
+      recognitionSignals: ["Atlas", "결제 모듈", "베타 릴리스"]
     }
   ]);
 
   assert.equal(result.confidence, "high");
-  assert.equal(result.selectedProjectId, "logos");
+  assert.equal(result.selectedProjectId, "atlas");
   assert.equal(result.requiresConfirmation, false);
 });
 
@@ -457,7 +457,7 @@ test("Continuity Brief는 정본과 비정본 경고를 분리한다", () => {
   assert.ok(brief.canonicalTruth.length > 0);
   assert.equal(brief.nonCanonical.explorationCount, 1);
   assert.ok(brief.warnings.some((warning) => warning.source === "checkpoint"));
-  assert.equal(brief.markdown.includes("유료화 가능성"), false);
+  assert.equal(brief.markdown.includes("베타 출시를 다음 주로"), false);
   assert.match(brief.markdown, /Exploration 1 item/);
   service.close();
 });
@@ -465,13 +465,19 @@ test("Continuity Brief는 정본과 비정본 경고를 분리한다", () => {
 test("데모 초기화는 사용자 프로젝트를 보존하고 데모만 재생성한다", () => {
   const service = createService();
   const firstDemo = service.ensureDemoProject();
+  service.createProject({
+    name: "LOGOS Continuity 해커톤 데모",
+    summary: "이전 데모 데이터",
+    primaryGoal: "이전 데모 목표"
+  });
   const customProject = createProject(service);
   const resetDemo = service.resetDemoProject();
   const projects = service.listProjects();
 
   assert.notEqual(resetDemo.id, firstDemo.id);
   assert.ok(projects.some((project) => project.id === customProject.id));
-  assert.equal(projects.filter((project) => project.name === "LOGOS Continuity 해커톤 데모").length, 1);
+  assert.equal(projects.filter((project) => project.name === "Atlas 결제 모듈 베타 릴리스").length, 1);
+  assert.equal(projects.some((project) => project.name === "LOGOS Continuity 해커톤 데모"), false);
   service.close();
 });
 
@@ -1366,7 +1372,8 @@ test("judge mode stays within three minutes and covers the core safety story", (
   assert.ok(JUDGE_MODE_STEPS.every((step) => step.narration && step.proof && step.actionLabel));
   assert.equal(clampJudgeStep(-1), 0);
   assert.equal(clampJudgeStep(99), JUDGE_MODE_STEPS.length - 1);
-  assert.equal(formatJudgeTime(JUDGE_MODE_TOTAL_SECONDS), "02:50");
+  assert.equal(formatJudgeTime(JUDGE_MODE_TOTAL_SECONDS), "02:15");
+  assert.ok(JUDGE_MODE_STEPS.every((step) => step.durationSeconds <= 23));
 });
 
 test("submission evidence separates verified artifacts from external actions", () => {

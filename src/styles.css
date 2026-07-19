@@ -23,6 +23,7 @@ button { cursor: pointer; }
 .loading { min-height: 100vh; display: grid; place-items: center; color: var(--muted); letter-spacing: .08em; }
 
 .shell { min-height: 100vh; display: grid; grid-template-columns: 252px 1fr; }
+.shell.judge-active .workspace { padding-bottom: 390px; }
 .sidebar {
   position: fixed; inset: 0 auto 0 0; width: 252px; padding: 30px 18px 22px;
   background: #0c1210; border-right: 1px solid var(--line); display: flex; flex-direction: column; z-index: 10;

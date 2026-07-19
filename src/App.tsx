@@ -926,7 +926,7 @@ export default function App() {
     setBusy(true);
     try {
       await loadConflictCenter(selectedId);
-      setConflictTargetId((current) => current || state?.truth[0]?.id || "");
+      setConflictTargetId((current) => current || state?.truth.find((entry) => entry.category === "safety_rule")?.id || state?.truth[0]?.id || "");
       setConflictOpen(true);
     } catch (error) {
       setNotice(error instanceof Error ? error.message : "충돌 정보를 불러오지 못했습니다.");
@@ -1757,7 +1757,7 @@ export default function App() {
   }
 
   return (
-    <div className="shell">
+    <div className={judgeActive ? "shell judge-active" : "shell"}>
       <aside className="sidebar">
         <div className="brand">
           <div className="brand-mark">L</div>
@@ -1882,7 +1882,7 @@ export default function App() {
           <form className="intake-form" onSubmit={processIntake}>
             <div className="example-row">
               <span>TRY</span>
-              <button type="button" onClick={() => setIntakeText("유료화도 생각해보자.")}>미확정 아이디어</button>
+              <button type="button" onClick={() => setIntakeText("베타 출시를 다음 주로 앞당기는 것도 검토해보자.")}>미확정 아이디어</button>
               <button type="button" onClick={() => setIntakeText("유료화를 공식 제품 목표로 확정한다.")}>명시적 확정</button>
               <button type="button" onClick={() => setIntakeText("다음 작업은 복구 E2E 테스트 구현이다.")}>다음 작업</button>
             </div>
@@ -1964,7 +1964,7 @@ export default function App() {
               <input
                 value={explorationText}
                 onChange={(event) => setExplorationText(event.target.value)}
-                placeholder="예: 유료화도 생각해보자"
+                placeholder="예: 베타 출시를 다음 주로 앞당기는 것도 검토해보자"
                 required
               />
               <button disabled={busy}>탐색으로 저장</button>
@@ -2970,7 +2970,7 @@ export default function App() {
             </p>
             <form onSubmit={recognizeSession}>
               <div className="session-examples">
-                <button type="button" onClick={() => setSessionQuery("LOGOS 해커톤 작업 이어가자.")}>명확한 프로젝트</button>
+              <button type="button" onClick={() => setSessionQuery("Atlas 결제 모듈 작업 이어가자.")}>명확한 프로젝트</button>
                 <button type="button" onClick={() => setSessionQuery("지난번 해커톤 작업 계속하자.")}>확인이 필요한 표현</button>
                 <button type="button" onClick={() => setSessionQuery("오늘 집중력을 높이는 방법을 알려줘.")}>일반 대화</button>
               </div>
@@ -2980,7 +2980,7 @@ export default function App() {
                   setSessionQuery(event.target.value);
                   setRecognition(null);
                 }}
-                placeholder="예: LOGOS 해커톤 작업 이어가자"
+                placeholder="예: Atlas 결제 모듈 작업 이어가자"
                 required
               />
               <button className="primary-button" disabled={busy}>프로젝트 식별</button>

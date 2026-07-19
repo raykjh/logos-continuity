@@ -47,7 +47,7 @@ GPT-5.6 proposes recognition and classification results. It never bypasses the l
 4. Click **심사 모드** (`Judge Mode`).
 5. Follow the seven guided steps from Command Center to Assembled Context.
 
-The guided route is designed for a `02:50` demonstration and includes safe sample inputs, proof points, and direct links to each operational center.
+The optional guided route is designed for a `02:15` walkthrough and keeps every step at 23 seconds or less.
 
 ## Screenshots
 
@@ -140,7 +140,7 @@ No account, installation, or API key is required.
 2. Wait for the free Render instance to wake if needed.
 3. Click **데모 초기화**.
 4. Start **심사 모드**.
-5. Use `LOGOS 해커톤 작업 이어가자` in the New Session flow.
+5. Use `Atlas 결제 모듈 작업 이어가자` in the New Session flow.
 6. Inspect the Continuity Brief, Conflict Resolution Center, History, and Assembled Context.
 
 ### Local Source Run

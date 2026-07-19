@@ -85,7 +85,7 @@ GPT-5.6 has a meaningful runtime role. It identifies the intended project from a
 - implemented approval-gated canonical transactions and three-way conflict resolution;
 - created provenance-aware context promotion and drift monitoring;
 - added a portfolio-level continuity risk Command Center;
-- built a seven-step 2:50 Judge Mode;
+- built an optional seven-step 2:15 Judge Mode with no static step longer than 23 seconds;
 - passed 54 automated tests and a full public browser rehearsal.
 
 ## What We Learned
@@ -107,7 +107,7 @@ Reliable AI continuity is not primarily a retrieval problem. It is an authority 
 3. Click **데모 초기화** to restore deterministic sample data.
 4. Confirm the **GPT-5.6 LIVE** badge.
 5. Click **심사 모드** and follow the seven guided steps.
-6. In New Session, use `LOGOS 해커톤 작업 이어가자`.
+6. In New Session, use `Atlas 결제 모듈 작업 이어가자`.
 7. Review the Continuity Brief, safe classification, Conflict Resolution Center, History, and Assembled Context.
 
 No account, payment, or API key is required for judges.
