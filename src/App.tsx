@@ -2972,13 +2972,17 @@ export default function App() {
               </div>
               <button onClick={() => setSessionOpen(false)}>×</button>
             </header>
+            <div className="session-mode-note">
+              <strong>Use LOGOS like ChatGPT.</strong>
+              <span>Judge Mode is only for a guided technical walkthrough.</span>
+            </div>
             <p>
               프로젝트를 억지로 연결하지 않습니다. High는 바로 복구하고, Medium은 확인하며,
               Low는 일반 대화로 유지합니다.
             </p>
             <form onSubmit={recognizeSession}>
               <div className="session-examples">
-              <button type="button" onClick={() => setSessionQuery("Atlas 결제 모듈 작업 이어가자.")}>명확한 프로젝트</button>
+                <button type="button" onClick={() => setSessionQuery("Continue the Atlas payment module project. What should I do next?")}>English example</button>
                 <button type="button" onClick={() => setSessionQuery("지난번 해커톤 작업 계속하자.")}>확인이 필요한 표현</button>
                 <button type="button" onClick={() => setSessionQuery("오늘 집중력을 높이는 방법을 알려줘.")}>일반 대화</button>
               </div>

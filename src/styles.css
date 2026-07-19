@@ -624,6 +624,9 @@ button:disabled { cursor: wait; opacity: .55; }
 }
 .session-modal h2, .brief-modal h2 { margin: 7px 0 0; font-size: 24px; }
 .session-modal header > button, .brief-modal header > button { border: 0; color: var(--muted); background: transparent; font-size: 24px; }
+.session-mode-note { display: flex; align-items: center; gap: 10px; margin: 16px 0 8px; padding: 11px 13px; border: 1px solid rgba(74, 222, 128, 0.34); background: rgba(74, 222, 128, 0.08); }
+.session-mode-note strong { color: var(--green); font-size: 12px; }
+.session-mode-note span { color: var(--ink); font-size: 11px; }
 .session-modal > p { margin: 14px 0 20px; color: var(--muted); font-size: 11px; line-height: 1.6; }
 .session-modal form { display: grid; grid-template-columns: 1fr 150px; }
 .session-modal form textarea { min-height: 92px; padding: 16px; resize: vertical; outline: none; color: var(--ink); background: #080d0b; border: 1px solid #34483e; font-size: 13px; line-height: 1.6; }
